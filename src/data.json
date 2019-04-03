@@ -1,7 +1,8 @@
 {
     "bayiler" : [
         {
-            "bayiAdi" : "Zafer Gıda"
+            "bayiAdi" : "Zafer Gıda",
+            "adres" : "Atalar Mah. Köroğlu Cad. No:46, Kartal, İstanbul"
         }
     ]
 }

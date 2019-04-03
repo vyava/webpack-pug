@@ -1,5 +1,7 @@
 {
     "compilerOptions": {
-      "sourceMap": true
+      "sourceMap": true,
+      "moduleResolution" : "classic",
+      "baseUrl": "./src"
     }
   }
