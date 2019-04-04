@@ -1,6 +1,6 @@
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const HtmlWebpackInlineSourcePlugin = require("html-webpack-inline-source-plugin");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+// const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 // const pug = require("pug-loader");
 // const webpack = require("webpack");
 
@@ -33,30 +33,8 @@ module.exports = () => ({
         test: /\.ts$/,
         loader: ["babel-loader", "ts-loader"]
       },
-      {
-        test: /\.css$/,
-        use: [{ loader: 'style-loader' }, { loader: 'file-loader' }],
-      }
-      // {
-      //     test: /\.m?js$/,
-      //     exclude: /(node_modules|bower_components)/,
-      //     use: {
-      //         loader: 'babel-loader',
-      //         options: {
-      //             presets: ['@babel/preset-env'],
-      //             plugins: ['@babel/plugin-proposal-object-rest-spread']
-      //         }
-      //     }
-      // }
     ]
   },
-  // devServer: {
-
-  //     // host : '0.0.0.0',
-  //     // port : '8080',
-  //     inline: true,
-  //     contentBase: path.join(__dirname, "src")
-  // },
 
   plugins: [
     new HtmlWebpackPlugin({
@@ -66,6 +44,7 @@ module.exports = () => ({
         test: "Zafer"
       }
     }),
+    
     new HtmlWebpackInlineSourcePlugin()
-  ] // , new webpack.ProgressPlugin()
+  ]
 });
