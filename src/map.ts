@@ -5,8 +5,8 @@ class Map {
   API_KEY =
     "pk.eyJ1IjoiemFmZXJnZW5jIiwiYSI6ImNqZmR1MGd3MTJyMzgycm52ZmN5MG93ZWIifQ.EArl8wm-RmbkSczT76TDEw";
 
-  public map : any;
-  constructor(elementId : string) {
+  public map: any;
+  constructor(elementId: string) {
     mapboxgl.accessToken = this.API_KEY;
     this.map = new mapboxgl.Map({
       container: elementId,
@@ -41,37 +41,51 @@ class Map {
     );
   }
 
-//   mark(result, status) {
-//     if (status != "OK") {
-//       console.log("hata");
-//     } else {
-//       this.insertMarker(coords);
-//     }
-//   }
+  //   mark(result, status) {
+  //     if (status != "OK") {
+  //       console.log("hata");
+  //     } else {
+  //       this.insertMarker(coords);
+  //     }
+  //   }
 
   insertMarker(coords) {
     var element = this.createMarkerElement("marker");
 
     new mapboxgl.Marker(element).setLngLat(coords).addTo(this.map);
-  };
+  }
 
   createMarkerElement(className) {
     var el = document.createElement("a");
-    el.addEventListener("click", (e) => {
-      console.log(e.target)
-    })
+    el.addEventListener("click", e => {
+      console.log(e.target);
+    });
     el.className = className;
     return el;
-  };
-
-  addLayer(layer) {
-    this.map.addLayer(layer);
   }
-  
+
+  addSource() {
+    let emptyGJ = {
+      type: "FeatureCollection",
+      features: []
+    };
+
+    this.map.addSource("land", { type: "geojson", data: emptyGJ });
+
+    this.map.addLayer({
+      id: "land",
+      type: "fill",
+      source: "land",
+      paint: {
+        "fill-color": "#a89b97",
+        "fill-opacity": 0.8
+      }
+    });
+  }
+
   doSoemthing(e) {
     console.log(e.target);
   }
 }
-
 
 export default Map;
