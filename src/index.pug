@@ -5,7 +5,6 @@ html(lang="en")
     meta(http-equiv="X-UA-Compatible", content="ie=edge")
     title Title
     link(rel="stylesheet", href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css")
-    link(rel="stylesheet", href="https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.1/mapbox-gl.css")
     include style.html    
   body
     - var data = require("./data.json")
@@ -20,6 +19,5 @@ html(lang="en")
                 class="list-group-item list-group-item-action"
                 rel="bayiler"
                 data-info= JSON.stringify(bayi))= bayi.bayiAdi
-          
-    script(src="https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.1/mapbox-gl.js")
+    script(src="https://unpkg.com/leaflet@1.4.0/dist/leaflet.js")
     script(src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC4f9jG3LJAqo4qcwg5KV8WnxwNZhKAQT0")
