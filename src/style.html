@@ -14,59 +14,55 @@
     width: 100%;
   }
 
-  #menu {
-    background: #fff;
+  /* Always set the map height explicitly to define the size of the div
+       * element that contains the map. */
+
+  /* The popup bubble styling. */
+  .popup-bubble {
+    /* Position the bubble centred-above its parent. */
     position: absolute;
-    z-index: 1;
-    top: 10px;
-    right: 10px;
-    border-radius: 3px;
-    width: 120px;
-    border: 1px solid rgba(0, 0, 0, 0.4);
-    font-family: "Open Sans", sans-serif;
+    top: 0;
+    left: 0;
+    transform: translate(-50%, -100%);
+    /* Style the bubble. */
+    background-color: white;
+    padding: 5px;
+    border-radius: 5px;
+    font-family: sans-serif;
+    overflow-y: auto;
+    max-height: 60px;
+    box-shadow: 0px 2px 10px 1px rgba(0, 0, 0, 0.5);
   }
-
-  #menu a {
-    font-size: 13px;
-    color: #404040;
-    display: block;
-    margin: 0;
-    padding: 0;
-    padding: 10px;
-    text-decoration: none;
-    border-bottom: 1px solid #00000040;
-    text-align: center;
+  /* The parent of the bubble. A zero-height div at the top of the tip. */
+  .popup-bubble-anchor {
+    /* Position the div a fixed distance above the tip. */
+    position: absolute;
+    width: 100%;
+    bottom: /* TIP_HEIGHT= */ 8px;
+    left: 0;
   }
-
-  #menu a:last-child {
-    border: none;
+  /* This element draws the tip. */
+  .popup-bubble-anchor::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    /* Center the tip horizontally. */
+    transform: translate(-50%, 0);
+    /* The tip is a https://css-tricks.com/snippets/css/css-triangle/ */
+    width: 0;
+    height: 0;
+    /* The tip is 8px high, and 12px wide. */
+    border-left: 6px solid transparent;
+    border-right: 6px solid transparent;
+    border-top: /* TIP_HEIGHT= */ 8px solid white;
   }
-
-  #menu a:hover {
-    background-color: #f8f8f8;
-    color: #404040;
-  }
-
-  #menu a.active {
-    background-color: #3887be;
-    color: #ffffff;
-  }
-
-  #menu a.active:hover {
-    background: #da290a;
-  }
-
-  .marker {
-    background-image: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/PjwhRE9DVFlQRSBzdmcgIFBVQkxJQyAnLS8vVzNDLy9EVEQgU1ZHIDEuMS8vRU4nICAnaHR0cDovL3d3dy53My5vcmcvR3JhcGhpY3MvU1ZHLzEuMS9EVEQvc3ZnMTEuZHRkJz48c3ZnIGVuYWJsZS1iYWNrZ3JvdW5kPSJuZXcgMCAwIDgwIDgwIiBoZWlnaHQ9IjgwcHgiIGlkPSJJY29ucyIgdmVyc2lvbj0iMS4xIiB2aWV3Qm94PSIwIDAgODAgODAiIHdpZHRoPSI4MHB4IiB4bWw6c3BhY2U9InByZXNlcnZlIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHhtbG5zOnhsaW5rPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5L3hsaW5rIj48Zz48cGF0aCBkPSJNNDAuMDcsMTVjLTExLjU5NywwLTIxLDkuNDAzLTIxLDIxYzAsNS43NjMsMi4zMjUsMTAuOTgxLDYuMDg1LDE0Ljc3NmwtMC4wMDQsMC4wMDRMNDAsNjUuNjI5bDEzLjQxNS0xMy40MTUgICBDNTguMDksNDguMzYyLDYxLjA3LDQyLjUyOSw2MS4wNywzNkM2MS4wNywyNC40MDMsNTEuNjY4LDE1LDQwLjA3LDE1eiBNNTAuMjM1LDQ4LjM1NWwtMC4xODYsMC4xNTNsLTAuMTcsMC4xN0w0MCw1OC41NTggICBMMjkuNTk1LDQ4LjE1M2wtMC44ODgtMC44OTZDMjUuNzE3LDQ0LjIzOSwyNC4wNyw0MC4yNDEsMjQuMDcsMzZjMC04LjgyMiw3LjE3OC0xNiwxNi0xNmM4LjgyMiwwLDE2LDcuMTc4LDE2LDE2ICAgQzU2LjA3LDQwLjc5Nyw1My45NDQsNDUuMyw1MC4yMzUsNDguMzU1eiIvPjxwYXRoIGQ9Ik00MC4wNywyOGMtNC40MTgsMC04LDMuNTgyLTgsOGMwLDQuNDE4LDMuNTgyLDgsOCw4YzQuNDE4LDAsOC0zLjU4Miw4LThDNDguMDcsMzEuNTgyLDQ0LjQ4OCwyOCw0MC4wNywyOHogTTQwLjA3LDM5ICAgYy0xLjY1NCwwLTMtMS4zNDYtMy0zYzAtMS42NTQsMS4zNDYtMywzLTNjMS42NTQsMCwzLDEuMzQ2LDMsM0M0My4wNywzNy42NTQsNDEuNzI1LDM5LDQwLjA3LDM5eiIvPjwvZz48L3N2Zz4=);
-    background-size: cover;
-    width: 50px;
-    height: 50px;
-    border-radius: 50%;
-    cursor: pointer;
-  }
-
-  .mapboxgl-popup {
-    max-width: 400px;
-    font: 12px/20px "Helvetica Neue", Arial, Helvetica, sans-serif;
+  /* JavaScript will position this div at the bottom of the popup tip. */
+  .popup-container {
+    cursor: auto;
+    height: 0;
+    position: absolute;
+    /* The max width of the info window. */
+    width: 200px;
   }
 </style>

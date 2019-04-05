@@ -3,44 +3,78 @@ declare var google;
 function initMap() {
   var map = new google.maps.Map(document.getElementById("map"), {
     zoom: 10,
-    center: { lat: -33.9, lng: 151.2 }
+    center: { lat: 40.90791, lng: 29.17695 }
   });
 
-  setMarkers(map);
+  map.data.loadGeoJson(
+    'https://storage.googleapis.com/mapsdevsite/json/google.json');
+  return map;
 }
+
+var map;
 
 window.addEventListener("load", () => {
   let bayiler = [];
-  let elements = document.getElementsByClassName("list-group-item");
+  let elements = [].slice.call(
+    document.getElementsByClassName("list-group-item")
+  );
 
-  let _iterate = new Iterate(elements);
-
+  // Iterate for elements
+  let elementArray = new Iterate(elements);
   let element = null;
-  while ((element = _iterate.next()) != null) {
+  while ((element = elementArray.next()) != null) {
     let bayiInfo = JSON.parse(element.getAttribute("data-info"));
 
-    // MapObject.getLatLng(bayiInfo.adres, coords => {
-    //   MapObject.insertMarker(coords);
-    // });
-
-    // bayiInfo["coords"] = coords;
     bayiler.push(bayiInfo);
   }
-  initMap();
-  console.log(bayiler)
+
+  // Init map to the #map element
+  map = initMap();
+
+  // Iterate for Coords
+  let coordsArray = new Iterate(bayiler);
+
+  // Iterate coords array
+  let coords = null;
+  while ((coords = coordsArray.next()) != null) {
+    // Get coords from addres
+    getLatLng(coords.adres, _coords => {
+      // Set marker to the Map
+      setMarkers(map, ["coords.bayiAdi", _coords[0], _coords[1], 100]);
+    });
+  }
 });
 
 // Data for the markers consisting of a name, a LatLng and a zIndex for the
 // order in which these markers should display on top of each other.
-var beaches = [
-  ["Bondi Beach", -33.890542, 151.274856, 4],
-  ["Coogee Beach", -33.923036, 151.259052, 5],
-  ["Cronulla Beach", -34.028249, 151.157507, 3],
-  ["Manly Beach", -33.80010128657071, 151.28747820854187, 2],
-  ["Maroubra Beach", -33.950198, 151.259302, 1]
-];
 
-function setMarkers(map) {
+function getLatLng(adres, fn) {
+  var geocoder;
+  if (geocoder == undefined) {
+    geocoder = new google.maps.Geocoder();
+  } else {
+    console.log("zaten var");
+  }
+
+  // Geocode an address.
+  return geocoder.geocode(
+    {
+      address: adres
+    },
+    (result, status) => {
+      if (status == "OK") {
+        var lat = result[0].geometry.location.lat();
+        var lng = result[0].geometry.location.lng();
+        var coords = [lat, lng];
+        fn(coords);
+      } else {
+        fn(status);
+      }
+    }
+  );
+}
+
+function setMarkers(map, beach) {
   // Adds markers to the map.
 
   // Marker sizes are expressed as a Size of X,Y where the origin of the image
@@ -65,24 +99,46 @@ function setMarkers(map) {
     coords: [1, 1, 1, 20, 18, 20, 18, 1],
     type: "poly"
   };
-  for (var i = 0; i < beaches.length; i++) {
-    var beach = beaches[i];
-    var marker = new google.maps.Marker({
-      position: { lat: beach[1], lng: beach[2] },
-      map: map,
-      icon: image,
-      shape: shape,
-      title: beach[0],
-      zIndex: beach[3]
-    });
-  }
+  var beach;
+  var marker = new google.maps.Marker({
+    position: { lat: beach[1], lng: beach[2] },
+    map: map,
+    icon: image,
+    labels: 11,
+    shape: shape,
+    title: beach[0],
+    zIndex: beach[3]
+  });
+
+  let html = `<h1>Gizli Mesaj</h1>`
+  attachSecretMessage(marker, html);
+  //   marker.setAttribute("id", "ddd")
+  marker.addListener("click", e => {
+    markerClickHandler(marker, e.latLng);
+  });
+}
+
+function markerClickHandler(marker, latLng) {
+  // map.setZoom(8);
+  map.panTo(latLng);
+  // console.log(e)
+}
+
+function attachSecretMessage(marker, secretMessage) {
+  var infowindow = new google.maps.InfoWindow({
+    content: secretMessage
+  });
+
+  marker.addListener("click", function() {
+    infowindow.open(marker.get("map"), marker);
+  });
 }
 
 class Iterate {
   array = [];
   i = 0;
   constructor(array) {
-    this.array = array;
+    this.array = [].slice.call(array);
   }
 
   next = () => {
