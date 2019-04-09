@@ -1,4 +1,4 @@
-declare var google;
+// declare var google;
 declare var MarkerClusterer;
 function initMap() {
   var map = new google.maps.Map(document.getElementById("map"), {
@@ -27,16 +27,20 @@ window.addEventListener("load", async () => {
   // let coordsArray = [];
   let markerArray = [];
   let coords = null;
+  let MarkerObject = new Marker();
   while ((coords = coordsIterator.next()) != null) {
     // Get coords from addres
     let [lat, lng]: [number, number] = await getLatLng(coords.adres);
     // Set marker to the Map
     // coordsArray.push([lat, lng]);
-    let marker = setMarkers(map, ["coords.bayiAdi", lat, lng, 100]);
+
+    // Instance of Marker
+
+    let marker = MarkerObject.create({ map, position: { lat, lng } });
     markerArray.push(marker);
   }
 
-  console.log(markerArray);
+  // console.log(markerArray);
   // console.log(coordsArray);
 
   var markerCluster = new MarkerClusterer(map, markerArray, {
@@ -96,12 +100,28 @@ function getLatLng(adres): Promise<any> {
   });
 }
 
-function setMarkers(map, [title, lat, lng, index]) {
-  // Adds markers to the map.
+function markerClickHandler(marker, latLng) {
+  // console.log(marker);
+  map.panTo(latLng);
+}
 
-  // Origins, anchor positions and coordinates of the marker increase in the X
-  // direction to the right and in the Y direction down.
-  var image = {
+// function attachSecretMessage(marker, secretMessage) {
+//   var infowindow = new google.maps.InfoWindow({
+//     content: secretMessage
+//   });
+
+//   marker.addListener("click", function(e) {
+//     infowindow.open(marker.get("map"), marker);
+//   });
+
+//   marker.addListener("mouseover", function() {
+//     console.log(this);
+//     // infowindow.open(marker.get("map"), marker);
+//   });
+// }
+
+class Marker {
+  DEFAULT_IMAGE = {
     url:
       "https://developers.google.com/maps/documentation/javascript/examples/full/images/beachflag.png",
     // This marker is 20 pixels wide by 32 pixels high.
@@ -112,60 +132,49 @@ function setMarkers(map, [title, lat, lng, index]) {
     anchor: new google.maps.Point(0, 32)
   };
 
-  // var shape = {
-  //   coords: [1, 1, 1, 20, 18, 20, 18, 1],
-  //   type: "poly"
-  // };
-  var marker = new google.maps.Marker({
-    position: { lat, lng },
-    map: map,
-    // icon: {
-    //   path: google.maps.SymbolPath.CIRCLE, //or any others
-    //   scale: 0
-    // },
-    labels: {
-      fontFamily: "FontAwesome",
-      text: "\uf140", //code for font-awesome icon
-      fontSize: "15px",
-      color: "blue"
-    },
-    // shape: shape,
-    id: "id",
-    // title: title,
-    // zIndex: index
-  });
+  marker: google.maps.Marker;
+  map: google.maps.Map = null;
+  lastWindow: [google.maps.InfoWindow] = <any>[];
+  constructor() {
+    this.lastWindow.push(this.createInfoWindow("loading"));
+    console.log(this.lastWindow);
+  }
 
-  let html = `<h1>Gizli Mesaj</h1>`;
+  public create({ map, position }) {
+    // Create a marker
+    this.marker = new google.maps.Marker({
+      map,
+      position
+    });
 
-  attachSecretMessage(marker, html);
-  //   marker.setAttribute("id", "ddd")
+    if (!this.map) {
+      this.map = map;
+    }
+    // let handler = function(a,b){
+    // }
+    // handler.apply(this.markerClickHandler)
+    let that = this;
+    // Set click handler to the Marker
+    this.marker.addListener("click", function(e) {
+      if (that.lastWindow.length > 2) {
+        that.lastWindow.map((_w, i) => (i == 1) ? _w.close() : true).shift()
+        console.log(that.lastWindow)
+      }
+      let _window = that.createInfoWindow("mesaj", this.getPosition());
+      _window.open(that.map, this);
 
-  // marker.set("id", 12)
-  marker.addListener("click", e => {
-    markerClickHandler(marker, e.latLng);
-  });
+      that.lastWindow.push(_window);
 
-  return marker;
-}
+      // handler(this, "mesaj")
+      // this.markerClickHandler(e, "Mesaj");
+    });
+  }
 
-function markerClickHandler(marker, latLng) {
-  console.log(marker);
-  map.panTo(latLng);
-}
+  // Create InfoWindow instance for marker
+  public createInfoWindow(content?: string, position?: any) {
+    return new google.maps.InfoWindow();
+  }
 
-function attachSecretMessage(marker, secretMessage) {
-  var infowindow = new google.maps.InfoWindow({
-    content: secretMessage
-  });
-
-  marker.addListener("click", function() {
-    infowindow.open(marker.get("map"), marker);
-  });
-
-  marker.addListener("mouseover", function() {
-    console.log(this);
-    // infowindow.open(marker.get("map"), marker);
-  });
 }
 
 class Iterate {

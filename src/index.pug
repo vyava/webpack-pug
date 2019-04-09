@@ -9,16 +9,17 @@ html(lang="en")
     include style.html    
   body
     - var data = require("./data.json")
-    div(class="container-fluid h-100")
+    div(class="container-fluid")
       div(class="row h-100" style={position:'relative'})
         div(class="col-md-8")
-          i(class="fa fa-camera-retro") i
+          //- i(class="fa fa-camera-retro") i
           div(id="map")
         div(class="col-md-4")
           div(class="list-group")
             each bayi in data.bayiler
               a(href="javascript:;"
                 class="list-group-item list-group-item-action"
+                id= bayi.id
                 rel="bayiler"
                 data-info= JSON.stringify(bayi))= bayi.bayiAdi
     script(src="https://maps.googleapis.com/maps/api/js?key=AIzaSyC4f9jG3LJAqo4qcwg5KV8WnxwNZhKAQT0")
