@@ -1,91 +1,36 @@
-declare var mapboxgl;
-declare var google;
-
 class Map {
-  API_KEY =
-    "pk.eyJ1IjoiemFmZXJnZW5jIiwiYSI6ImNqZmR1MGd3MTJyMzgycm52ZmN5MG93ZWIifQ.EArl8wm-RmbkSczT76TDEw";
-
-  public map: any;
-  constructor(elementId: string) {
-    mapboxgl.accessToken = this.API_KEY;
-    this.map = new mapboxgl.Map({
-      container: elementId,
-      style: "mapbox://styles/mapbox/streets-v11",
-      zoom: 15,
-      center: [29.176843299999973, 40.90901789999999]
-    });
+  map: google.maps.Map;
+  constructor() {
+    console.log("Map Loaded")
+    this.map = this.init()
+    // this.listen('click');
   }
 
-  getLatLng(adres, fn) {
-    var geocoder;
-    if (geocoder == undefined) {
-      geocoder = new google.maps.Geocoder();
-    } else {
-      console.log("zaten var");
-    }
-    // Geocode an address.
-    return geocoder.geocode(
-      {
-        address: adres
-      },
-      (result, status) => {
-        if (status == "OK") {
-          var lat = result[0].geometry.location.lat();
-          var lng = result[0].geometry.location.lng();
-          var coords = [lng, lat];
-          fn(coords);
-        } else {
-          fn(status);
-        }
-      }
+  init(): google.maps.Map {
+    let map = new google.maps.Map(document.getElementById("map"), {
+      zoom: 10,
+      center: { lat: 40.90791, lng: 29.17695 }
+    });
+
+    map.data.loadGeoJson(
+      "https://storage.googleapis.com/mapsdevsite/json/google.json"
     );
+    return map;
   }
 
-  //   mark(result, status) {
-  //     if (status != "OK") {
-  //       console.log("hata");
-  //     } else {
-  //       this.insertMarker(coords);
-  //     }
-  //   }
-
-  insertMarker(coords) {
-    var element = this.createMarkerElement("marker");
-
-    new mapboxgl.Marker(element).setLngLat(coords).addTo(this.map);
+  listen(eventName: string, fn : Function) {
+    this.map.addListener(eventName, (function(event, _fn){
+      console.log("inside 2")
+      _fn(event)
+      return <any>[1]
+    })(event, fn));
   }
 
-  createMarkerElement(className) {
-    var el = document.createElement("a");
-    el.addEventListener("click", e => {
-      console.log(e.target);
-    });
-    el.className = className;
-    return el;
-  }
-
-  addSource() {
-    let emptyGJ = {
-      type: "FeatureCollection",
-      features: []
-    };
-
-    this.map.addSource("land", { type: "geojson", data: emptyGJ });
-
-    this.map.addLayer({
-      id: "land",
-      type: "fill",
-      source: "land",
-      paint: {
-        "fill-color": "#a89b97",
-        "fill-opacity": 0.8
-      }
-    });
-  }
-
-  doSoemthing(e) {
-    console.log(e.target);
-  }
+  // mapClickHandler(e) {
+  //   console.log("mapClickHandler")
+  //   this.MarkerObject.closeInfoWindow();
+  //   this.MarkerObject.setAllMarkersDefault();
+  // }
 }
 
 export default Map;
