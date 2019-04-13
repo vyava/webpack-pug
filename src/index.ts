@@ -7,25 +7,26 @@ var map: google.maps.Map;
 var elementList: [HTMLElement] = <any>[];
 let lastSelectedElement: HTMLElement;
 
+
 window.addEventListener("load", async () => {
   // Instance of Map
   let MapObject = new Map();
+  map = MapObject.init();
   // Instance of Marker
   let MarkerObject = new Marker();
+  
+    
 
   MapObject.listen('click', function(event){
-    console.log("inside");
-    console.log(event)
     MarkerObject.clickOutsideOfMarker(this)
-  })
+  });
 
   // Get elementlist
   elementList = getElementList();
 
   let bayiler = parseBayiler(elementList);
 
-  // Init map to the #map element
-  map = MapObject.init();
+  
 
   // Iterate for Coords
   let bayiIterator = new Iterate(bayiler);
@@ -47,7 +48,6 @@ window.addEventListener("load", async () => {
   // google.maps.event.addListenerOnce(map, 'tilesloaded', function(e){
   //   console.log("loaded")
   // })
-
   var markerCluster = new MarkerClusterer(map, MarkerObject.markers, {
     imagePath:
       "https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m"

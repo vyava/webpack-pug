@@ -7,7 +7,6 @@ class Marker {
   public lastWindow: google.maps.InfoWindow;
   public InfoWindow;
   constructor() {
-    console.log("Marker Loaded");
     this.InfoWindow = new InfoWindowObject();
     this.lastWindow = this.InfoWindow.lastWindow;
     // this.lastWindow = this.createInfoWindow("loading");)
@@ -76,7 +75,6 @@ class Marker {
   }
 
   clickOutsideOfMarker(context) {
-    console.log("clickOutsideOfMarker");
     this.closeInfoWindow();
     this.setAllMarkersDefault();
   }
