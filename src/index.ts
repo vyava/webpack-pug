@@ -59,10 +59,10 @@ window.addEventListener("load", async () => {
   // google.maps.event.addListenerOnce(map, 'tilesloaded', function(e){
   //   console.log("loaded")
   // })
-  var markerCluster = new MarkerClusterer(map, MarkerObject.markers, {
-    imagePath:
-      "https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m"
-  });
+  // var markerCluster = new MarkerClusterer(map, MarkerObject.markers, {
+  //   imagePath:
+  //     "https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m"
+  // });
 });
 
 
