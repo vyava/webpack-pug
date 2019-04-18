@@ -15,6 +15,7 @@ class Marker {
   }
 
   public create({ map, position, unvan, ruhsatNo }) {
+    console.log([position.lat, position.lng])
     // Create a marker
     let marker = new google.maps.Marker({
       map,

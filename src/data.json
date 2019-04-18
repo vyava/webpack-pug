@@ -4,9 +4,11 @@
             "il" : "İSTANBUL",
             "ilce" : "KARTAL",
             "ruhsatNo" : "34302578PT",
-            "unvan" : "Zafer Gıda",
+            "unvan" : "Zafer Gıda Turizm Sanayi Ticaret Limited Aş - Zafer Gıda Turizm",
             "adres" : "Atalar Mah. Köroğlu Cad. No:46, d:7, Kartal, İstanbul",
-            "sinifDsd" : "08ASK"
+            "sinifDsd" : "08ASK",
+            "tip" : "02MAR",
+            "position" : [40.90901789999999, 29.176843299999973]
         },
         {
             "il" : "İSTANBUL",
@@ -14,7 +16,8 @@
             "ruhsatNo" : "34302579PT",
             "unvan" : "Mehmet Gıda",
             "adres" : "Atalar Mah. Köroğlu Cad. No:7, d:7, Kartal, İstanbul",
-            "tip" : "01BAK"
+            "tip" : "01BAK",
+            "position" : [40.910042, 29.173316999999997]
         },
         {
             "il" : "İSTANBUL",
@@ -22,7 +25,8 @@
             "ruhsatNo" : "34302580PT",
             "unvan" : "Ahmet Gıda",
             "adres" : "Altıntepe Mah. Maltepe, İstanbul",
-            "tip" : "02MAR"
+            "tip" : "02MAR",
+            "position" : [40.9535953, 29.105623199999968]
         },
         {
             "il" : "İSTANBUL",
@@ -30,7 +34,8 @@
             "ruhsatNo" : "34302581PT",
             "unvan" : "Koneli Gıda",
             "adres" : "Ziverbey Mah.  d:7, Kadıköy, İstanbul",
-            "tip" : "10DIG"
+            "tip" : "10DIG",
+            "position" : [41.0009371, 29.055275100000017]
         },
         {
             "il" : "İSTANBUL",
@@ -38,7 +43,8 @@
             "ruhsatNo" : "34302599PT",
             "unvan" : "Salkım Marker",
             "adres" : "Ziverbey Mah.  d:5, Kadıköy, İstanbul",
-            "tip" : "08ASK"
+            "tip" : "08ASK",
+            "position" : [40.9914402, 29.0376579]
         },
         {
             "il" : "İSTANBUL",
@@ -46,7 +52,8 @@
             "ruhsatNo" : "34302582PT",
             "unvan" : "Mehmet GIDA SAN",
             "adres" : "Atalar Mah. Köroğlu Cad. No:31, d:7, Kartal, İstanbul",
-            "tip" : "10DIG"
+            "tip" : "10DIG",
+            "position" : [40.9090176, 29.177020800000037]
         },
         {
             "il" : "İSTANBUL",
@@ -54,7 +61,8 @@
             "ruhsatNo" : "34302583PT",
             "unvan" : "ÜÇLER Marker",
             "adres" : "Atalar Mah. Köroğlu Cad. No:37, d:7, Kartal, İstanbul",
-            "tip" : "02MAR"
+            "tip" : "02MAR",
+            "position" : [40.9087168, 29.177428100000043]
         },
         {
             "il" : "İSTANBUL",
@@ -62,7 +70,8 @@
             "ruhsatNo" : "34302584PT",
             "unvan" : "Özcan Gıda",
             "adres" : "Atalar Mah. Köroğlu Cad. No:60, d:7, Kartal, İstanbul",
-            "tip" : "08ASK"
+            "tip" : "08ASK",
+            "position" : [40.9050034, 29.172497799999974]
         },
         {
             "il" : "İSTANBUL",
@@ -70,7 +79,8 @@
             "ruhsatNo" : "34302586PT",
             "unvan" : "Ercan Tekel",
             "adres" : "Atalar Mah. Köroğlu Cad. No:2, Kartal, İstanbul",
-            "tip" : "08ASK"
+            "tip" : "08ASK",
+            "position" : [40.9100034, 29.17292610000004]
         },
         {
             "il" : "İSTANBUL",
@@ -78,7 +88,8 @@
             "ruhsatNo" : "34302587PT",
             "unvan" : "Mehmet Gıda",
             "adres" : "Atalar Mah. Köroğlu Cad. No:29, Kartal, İstanbul",
-            "tip" : "09BFE"
+            "tip" : "09BFE",
+            "position" : [40.90923370000001, 29.176836500000036]
         },
         {
             "il" : "İSTANBUL",
@@ -86,55 +97,62 @@
             "ruhsatNo" : "34302588PT",
             "unvan" : "Mehmet Gıda",
             "adres" : "Gülsuyu Mah. d:7, Kartal, İstanbul",
-            "tip" : "06TEK"
+            "tip" : "06TEK",
+            "position" : [40.9298846, 29.157962399999974]
         },
         {
             "il" : "İSTANBUL",
             "ilce" : "KARTAL",
-            "ruhsatNo" : "34302588PT",
+            "ruhsatNo" : "34302589PT",
             "unvan" : "Mehmet Gıda",
             "adres" : "Gülsuyu Mah. d:7, Kartal, İstanbul",
-            "tip" : "06TEK"
+            "tip" : "06TEK",
+            "position" : [40.9298846, 29.157962399999974]
         },
         {
             "il" : "İSTANBUL",
             "ilce" : "KARTAL",
-            "ruhsatNo" : "34302588PT",
+            "ruhsatNo" : "34302510PT",
             "unvan" : "Mehmet Gıda",
-            "adres" : "Gülsuyu Mah. d:7, Kartal, İstanbul",
-            "tip" : "06TEK"
+            "adres" : "Gülsuyu Mah. d:8, Kartal, İstanbul",
+            "tip" : "06TEK",
+            "position" : [40.9298846, 29.157962399999974]
         },
         {
             "il" : "İSTANBUL",
             "ilce" : "KARTAL",
-            "ruhsatNo" : "34302588PT",
+            "ruhsatNo" : "34302211PT",
             "unvan" : "Mehmet Gıda",
-            "adres" : "Gülsuyu Mah. d:7, Kartal, İstanbul",
-            "tip" : "06TEK"
+            "adres" : "Gülsuyu Mah. d:9, Kartal, İstanbul",
+            "tip" : "06TEK",
+            "position" : [40.9298846, 29.157962399999974]
         },
         {
             "il" : "İSTANBUL",
             "ilce" : "KARTAL",
-            "ruhsatNo" : "34302588PT",
+            "ruhsatNo" : "34302522PT",
             "unvan" : "Mehmet Gıda",
-            "adres" : "Gülsuyu Mah. d:7, Kartal, İstanbul",
-            "tip" : "06TEK"
+            "adres" : "Gülsuyu Mah. d:11, Kartal, İstanbul",
+            "tip" : "06TEK",
+            "position" : [40.9298846, 29.157962399999974]
         },
         {
             "il" : "İSTANBUL",
             "ilce" : "KARTAL",
-            "ruhsatNo" : "34302588PT",
+            "ruhsatNo" : "34302519PT",
             "unvan" : "Mehmet Gıda",
-            "adres" : "Gülsuyu Mah. d:7, Kartal, İstanbul",
-            "tip" : "06TEK"
+            "adres" : "Gülsuyu Mah. d:25, Kartal, İstanbul",
+            "tip" : "06TEK",
+            "position" : [40.9298846, 29.157962399999974]
         },
         {
             "il" : "İSTANBUL",
             "ilce" : "KARTAL",
-            "ruhsatNo" : "34302588PT",
+            "ruhsatNo" : "34302524PT",
             "unvan" : "Mehmet Gıda",
-            "adres" : "Gülsuyu Mah. d:7, Kartal, İstanbul",
-            "tip" : "06TEK"
+            "adres" : "Bağlarbaşı Mah. no:6,  Maltepe, İstanbul",
+            "tip" : "06TEK",
+            "position" : [40.9298846, 29.157962399999974]
         }
     ]
 }

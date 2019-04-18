@@ -32,7 +32,6 @@ window.addEventListener("load", async () => {
 
     let marker = MarkerObject.findMarker(ruhsatNo);
     MarkerObject.markerClickHandler(marker)
-    console.log(marker)
   });
 
   // Get elementlist
@@ -45,8 +44,11 @@ window.addEventListener("load", async () => {
 
   let bayi = null;
   while ((bayi = bayiIterator.next()) != null) {
-    // Get coords from addres
-    let [lat, lng]: [number, number] = await UtilsObject.getLatLng(bayi.adres);
+    // Get coords from addres by GeoCoder
+    // let [lat, lng]: [number, number] = await UtilsObject.getLatLng(bayi.adres);
+    
+    // Get coords from data
+    let [lat, lng]: [number, number] = bayi.position ? bayi.position : [0,0]
 
     MarkerObject.create({
       map,
