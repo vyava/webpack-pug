@@ -6,12 +6,13 @@ class InfoWindowObject {
   // Create InfoWindow instance for marker
   public setInfoWindow(message?: string) {
     const content = `
-      <div style="width:300px;min-height:270px">
+      <div style="width:350px;min-height:270px" class="table-responsive">
         <h5>${message}</h5>
-        <table class="table">
+        <a href="javascript:;" onmouseleave="setTimeout(() => {resetClipboard(event)} ,1500)" onClick="selectElementContents(document.getElementById('InfoTable'), event);">Kopyala</a>
+        <table class="table table-hover" id="InfoTable">
           <tbody>
               <tr>
-                <th>Adı Soyadı</th>
+                <th class="w-40">Adı Soyadı</th>
                   <td>Mehmet Genç</td>
               </tr>
               <tr>

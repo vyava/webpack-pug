@@ -15,7 +15,6 @@ class Marker {
   }
 
   public create({ map, position, unvan, ruhsatNo }) {
-    console.log([position.lat, position.lng])
     // Create a marker
     let marker = new google.maps.Marker({
       map,
@@ -79,7 +78,6 @@ class Marker {
   }
 
   findMarker(markerId : string){
-    console.log(markerId)
     return this.markers.find((_marker : any) => _marker.ruhsatNo == markerId)
   }
 

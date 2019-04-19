@@ -68,5 +68,13 @@ window.addEventListener("load", async () => {
 });
 
 
-
-
+// function SelectContent (el) {    
+//   var aux = document.createElement("div");
+//   aux.setAttribute("contentEditable", "true");
+//   aux.innerHTML = document.getElementById("main").innerHTML;
+//   aux.setAttribute("onfocus", "document.execCommand('selectAll',false,null)"); 
+//   document.body.appendChild(aux);
+//   aux.focus();
+//   document.execCommand("copy");
+//   document.body.removeChild(aux);
+// }

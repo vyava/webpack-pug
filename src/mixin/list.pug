@@ -1,0 +1,13 @@
+mixin list_header(headers, active)
+    ul(class="nav nav-pills nav-justified")
+        each header, index in headers
+            li(class="nav-item")
+                a(class=(index == active ? "nav-link active" : "nav-link") href="javascript:;")= header
+
+mixin list_body(bayiler)
+    each bayi in bayiler
+        a(href="javascript:;"
+            class="list-group-item list-group-item-action bayi-list-item text-nowrap"
+            id= bayi.ruhsatNo
+            rel="bayiler"
+            data-info= JSON.stringify(bayi)) #[span(class="badge badge-secondary badge-pill" style={width:'50px'}) #{bayi.tip}] #{bayi.unvan}
