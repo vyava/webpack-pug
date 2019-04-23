@@ -8,7 +8,7 @@ class InfoWindowObject {
     const content = `
       <div style="width:350px;min-height:270px" class="table-responsive">
         <h5>${message}</h5>
-        <a href="javascript:;" onmouseleave="setTimeout(() => {resetClipboard(event)} ,1500)" onClick="selectElementContents(document.getElementById('InfoTable'), event);">Kopyala</a>
+        <a href="javascript:;" class="badge badge-primary float-right clipboard" onmouseleave="setTimeout(() => {resetClipboard(event)} ,1500)" onClick="selectElementContents(document.getElementById('InfoTable'), event);">Kopyala</a>
         <table class="table table-hover" id="InfoTable">
           <tbody>
               <tr>

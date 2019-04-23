@@ -8,6 +8,8 @@ class Marker {
   public lastWindow: google.maps.InfoWindow;
   public InfoWindow;
   public ListObject;
+  private DEFAULT_OPACITY = 0.9;
+  private PASSIVE_OPACITY = 0.5;
   constructor() {
     this.InfoWindow = new InfoWindowObject();
     this.lastWindow = this.InfoWindow.lastWindow;
@@ -21,7 +23,7 @@ class Marker {
       position,
       title: unvan,
       animation: google.maps.Animation.DROP,
-      opacity: 0.9
+      opacity: this.DEFAULT_OPACITY
       // optimized : false
     });
     marker.setValues({
@@ -70,7 +72,7 @@ class Marker {
     this.setAllMarkersPassive();
     // Set high index to the marker
     marker.setZIndex(100);
-    marker.setOpacity(0.9);
+    marker.setOpacity(this.DEFAULT_OPACITY);
   }
 
   closeInfoWindow() {
@@ -90,13 +92,13 @@ class Marker {
   setAllMarkersPassive() {
     this.markers.map(_m => {
       _m.setZIndex(100);
-      _m.setOpacity(0.5);
+      _m.setOpacity(this.PASSIVE_OPACITY);
     });
   }
 
   setAllMarkersDefault() {
     this.markers.map(_m => {
-      _m.setOpacity(0.9);
+      _m.setOpacity(this.DEFAULT_OPACITY);
     });
   }
 }

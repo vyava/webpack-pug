@@ -31,7 +31,8 @@ window.addEventListener("load", async () => {
     let ruhsatNo = id;
 
     let marker = MarkerObject.findMarker(ruhsatNo);
-    MarkerObject.markerClickHandler(marker)
+    MapObject.zoom(marker.getPosition(), 16);
+    MarkerObject.markerClickHandler(marker);
   });
 
   // Get elementlist
