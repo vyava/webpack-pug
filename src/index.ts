@@ -3,10 +3,9 @@ import Marker from "./marker";
 import List from "./list";
 import {Iterate, Utils} from "./utils";
 // declare var google;
-declare var MarkerClusterer;
+// declare var MarkerClusterer;
 
 var map: google.maps.Map;
-var elementList: [HTMLElement] = <any>[];
 
 window.addEventListener("load", async () => {
   // Instance of Map
@@ -21,22 +20,32 @@ window.addEventListener("load", async () => {
 
   // Instance of Utils and Iterate
   const UtilsObject = new Utils();
-
+  
+  // Click handler for `map` element
   MapObject.listen('click', function(){
     MarkerObject.clickOutsideOfMarker();
   });
 
   // Add click handler to the list elements
-  ListObject.addClickHandler((id) => {
+  ListObject.addClickHandlerList((id) => {
     let ruhsatNo = id;
 
     let marker = MarkerObject.findMarker(ruhsatNo);
     MapObject.zoom(marker.getPosition(), 16);
     MarkerObject.markerClickHandler(marker);
   });
-
   // Get elementlist
-  elementList = ListObject.getElementList();
+  let elementList : [HTMLElement] = ListObject.getElementList();
+  
+  // Get headerlist
+  ListObject.getHeaderList();
+  ListObject.setHeaderDisable();
+  // Add click handler to the header elements
+  ListObject.addClickHandlerHeader((id) => {
+    let durum = id;
+    // console.log(durum);
+  });
+  
 
   let bayiler = UtilsObject.parseBayiler(elementList);
 

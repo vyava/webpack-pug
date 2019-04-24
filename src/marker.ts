@@ -10,6 +10,15 @@ class Marker {
   public ListObject;
   private DEFAULT_OPACITY = 0.9;
   private PASSIVE_OPACITY = 0.5;
+
+  markerIcon = {
+    url: "http://maps.google.com/mapfiles/ms/icons/purple-dot.png",
+    // fillColor: '#000',
+    // fillOpacity: .9,
+    // scale: 10,
+    // strokeColor: '#000',
+    // strokeWeight: 1
+  };
   constructor() {
     this.InfoWindow = new InfoWindowObject();
     this.lastWindow = this.InfoWindow.lastWindow;
@@ -19,6 +28,7 @@ class Marker {
   public create({ map, position, unvan, ruhsatNo }) {
     // Create a marker
     let marker = new google.maps.Marker({
+      icon : this.markerIcon,
       map,
       position,
       title: unvan,
@@ -53,9 +63,6 @@ class Marker {
   }
 
   markerClickHandler(marker) {
-
-    // console.log(marker.ruhsatNo)
-
     // Remove active list element
     this.ListObject.selectBayiFromList(marker.ruhsatNo)
     // Close last InfoWindow
@@ -85,7 +92,7 @@ class Marker {
 
   clickOutsideOfMarker() {
     this.closeInfoWindow();
-    this.ListObject.removeActiveElement()
+    this.ListObject.removeActiveElementFromList()
     this.setAllMarkersDefault();
   }
 

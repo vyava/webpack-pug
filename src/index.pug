@@ -11,7 +11,7 @@ html(lang="en")
   body
     //- Loads data
     - var data = require("./data.json");
-    - var HEADERS = [{name : "HEPSİ",className : "hepsi"},{name : "FAAL",className : "aktif"},{name : "ONAY",className : "pasif"},{name : "İPTAL",className : "iptal"}]
+    - var HEADERS = [{name : "HEPSİ",className : "bayi-list-item"},{name : "FAAL",className : "aktif"},{name : "ONAYDA",className : "pasif"},{name : "İPTAL",className : "iptal"}]
 
     div(class="container-fluid")
       div(class="row h-100" style={position:'relative'})
@@ -20,7 +20,7 @@ html(lang="en")
           div(id="map")  
         div(class="col-md-4" id="list-container")
           nav(class="navbar navbar-dark justify-content-center p-0" id="sidebar")
-            div(class="sticky-top text-white navbar" id="filter")
+            div(class="sticky-top text-white navbar w-100 shadow bg-white rounded" id="filter")
               //- Loads mixin header
               +list_header(HEADERS, 0)
             div(class="list-group w-100" id="list")

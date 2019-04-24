@@ -1,5 +1,5 @@
 mixin list_header(headers, active)
-    ul(class="nav nav-pills nav-justified")
+    ul(class="nav nav-pills nav-justified w-100")
         each header, index in headers
             li(class="nav-item")
                 a(class=(index == active ? `nav-link active` : `nav-link`) id=`${header.className}` href="javascript:;")= header.name
