@@ -1,13 +1,23 @@
 class InfoWindowObject {
   public lastWindow: google.maps.InfoWindow;
+  DEFAULT_CONTENT = {
+    il: "",
+    ilce: "",
+    ruhsatNo: "",
+    unvan: "",
+    adres: "",
+    tip: "",
+    durum: ""
+  };
   constructor() {
     this.setInfoWindow();
   }
   // Create InfoWindow instance for marker
-  public setInfoWindow(message?: string) {
+  public setInfoWindow(data: Object = this.DEFAULT_CONTENT) {
+    console.log(data);
     const content = `
       <div style="width:350px;min-height:270px" class="table-responsive">
-        <h5>${message}</h5>
+        <h5>${data["unvan"]}</h5>
         <a href="javascript:;" class="badge badge-primary float-right clipboard" onmouseleave="setTimeout(() => {resetClipboard(event)} ,1500)" onClick="selectElementContents(document.getElementById('InfoTable'), event);">Kopyala</a>
         <table class="table table-hover" id="InfoTable">
           <tbody>
@@ -17,27 +27,27 @@ class InfoWindowObject {
               </tr>
               <tr>
                 <th>İl</th>
-                  <td>İSTANBUL</td>
+                  <td>${data["il"]}</td>
               </tr>
               <tr>
                 <th>İlçe</th>
-                  <td>KADIKÖY</td>
+                  <td>${data["ilce"]}</td>
               </tr>
               <tr>
                 <th>Ruhsat No</th>
-                  <td>3435867PT</td>
+                  <td>${data["ruhsatNo"]}</td>
               </tr>
               <tr>
                 <th>TİP</th>
-                  <td>BAKKAL</td>
+                  <td>${data["tip"]}</td>
               </tr>
               <tr>
                 <th>TİP DSD</th>
-                  <td>01BAK</td>
+                  <td>${data["tipDsd"] || ""}</td>
               </tr>
               <tr>
                 <th>Adres</th>
-                  <td>Atalar Mah Köroğlu Cad No:46 D:7</td>
+                  <td>${data["adres"]}</td>
               </tr>
           </tbody>
       </table>

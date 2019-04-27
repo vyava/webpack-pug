@@ -17,16 +17,8 @@ class List {
     el.classList.add("active");
 
     this.lastSelectedListElement = el;
+    return JSON.parse(el.getAttribute("data-info"));
   }
-
-  // setPassiveListByClassName(){
-  //   console.log("dsfsdf")
-  //   this.headerList.map(el => {
-  //     if(el.classList.contains(className)){
-  //       el.classList.add("d-none")
-  //     }
-  //   })
-  // }
 
   headerClick(e){
     let header : HTMLElement = e.target;
@@ -40,7 +32,6 @@ class List {
       }else{
         el.classList.remove("d-none")
       }
-      // this.setPassiveListByClassName()
     }
     
   }
@@ -64,26 +55,33 @@ class List {
   }
 
   setHeaderDisable() {
-    let disableHeaders = [];
+    let headersStatus = {
+      aktif : 0,
+      pasif : 0,
+      iptal : 0
+    };
+    
     for(let el of this.elementList){
-      let durum = el.classList
-      if((durum.contains("aktif") || durum.contains("pasif") || durum.contains("pasif"))){
-        console.log(durum)
-      }else{
-        this.headerList.find(h => h.getAttribute("id") ==  "1")
-        console.log("yokkk")
+      let durum = el.getAttribute("data-durum");
+      headersStatus[durum] = 1;
+    };
+    Object.keys(headersStatus).map(key => {
+      
+      if(headersStatus[key] == 0){
+        [].slice.call(this.headerList)
+          .find(h => h.getAttribute("id") ==  key)
+          .classList.add("disabled")
       }
-    }
+    })
   }
 
   getHeaderList(){
     this.headerList = <any>document.getElementsByClassName("nav-link");
-    // console.log(this.headerList)
+
     for(let header of this.headerList){
       header.addEventListener('click', (ev) => this.headerClick(ev))
     }
     this.lastSelectedHeaderElement = this.headerList[0];
-    // this.headerList.map(el => el.addEventListener('click', this.headerClick))
     return this.headerList;
   }
 

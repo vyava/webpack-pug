@@ -64,12 +64,12 @@ class Marker {
 
   markerClickHandler(marker) {
     // Remove active list element
-    this.ListObject.selectBayiFromList(marker.ruhsatNo)
+    let bayiData = this.ListObject.selectBayiFromList(marker.ruhsatNo)
     // Close last InfoWindow
     this.closeInfoWindow();
 
     // Create new InfoWindow for clicked marker
-    this.InfoWindow.setInfoWindow(`${marker.getTitle()}`, marker.getPosition());
+    this.InfoWindow.setInfoWindow(bayiData, marker.getPosition());
 
     // Listen for InfoWindow change event
     this.InfoWindow.listen(this.setAllMarkersDefault);

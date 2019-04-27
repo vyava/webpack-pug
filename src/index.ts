@@ -41,10 +41,10 @@ window.addEventListener("load", async () => {
   ListObject.getHeaderList();
   ListObject.setHeaderDisable();
   // Add click handler to the header elements
-  ListObject.addClickHandlerHeader((id) => {
-    let durum = id;
-    // console.log(durum);
-  });
+  // ListObject.addClickHandlerHeader((id) => {
+  //   let durum = id;
+  //   console.log(durum);
+  // });
   
 
   let bayiler = UtilsObject.parseBayiler(elementList);
